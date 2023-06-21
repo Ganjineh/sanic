@@ -1027,22 +1027,22 @@ class Sanic(StaticHandleMixin, BaseSanic, StartupMixin, metaclass=TouchUpMeta):
             if hasattr(self.ctx, "mslogger"):
                 await self.ctx.mslogger.log({
                     "success": False,
-                    "route": request.route.__str__(),
-                    "args": str(request.args),
-                    "body": str(request.body),
-                    "json": str(request.json),
-                    "error": "CancelledError"}, log_level="error")
+                    "route_data": request.route.__str__(),
+                    "args_data": str(request.args),
+                    "body_data": str(request.body),
+                    "json_data": str(request.json),
+                    "error_data": "CancelledError"}, log_level="error")
             raise
         except Exception as e:
             # Response Generation Failed
             if hasattr(self.ctx, "mslogger"):
                 await self.ctx.mslogger.log({
                     "success": False,
-                    "route": request.route.__str__(),
-                    "args": str(request.args),
-                    "body": str(request.body),
-                    "json": str(request.json),
-                    "error": "UnknownException"}, log_level="error")
+                    "route_data": request.route.__str__(),
+                    "args_data": str(request.args),
+                    "body_data": str(request.body),
+                    "json_data": str(request.json),
+                    "error_data": "UnknownException"}, log_level="error")
             await self.handle_exception(
                 request, e, run_middleware=run_middleware
             )
